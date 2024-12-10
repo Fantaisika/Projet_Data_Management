@@ -5,6 +5,16 @@ env/
 individual_data.csv
 statecity_data.csv
 iin_ranges.json
+# Ignorer les fichiers avec les extensions qui suivent
+*.csv 
+*.txt
+*.pdf
+*.json
+*.py
+!AppDasboard.py
+# Ignorer mon environnement virtuel
+env/
+
 
 Arnaque à la copie de CB _ attention à cette escroquerie qui a touché de nombreux français.txt
 
