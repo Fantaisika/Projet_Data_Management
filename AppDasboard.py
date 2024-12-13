@@ -4,6 +4,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import streamlit as st
 import seaborn as sns
 import plotly.express as px
 import random
@@ -13,6 +14,7 @@ pd.set_option("display.max_columns",None)
 pd.set_option("display.max_rows",100)
 random.seed(123)
 
+
 #===========================================================
 # Chargement des données
 #===========================================================
@@ -21,16 +23,16 @@ random.seed(123)
 metadonnees = pd.read_csv('metadonnees.csv')
 
 #Chargement de financial
-financial = pd.read_csv('financial_clean.csv', chunksize=10**5)
+financial = pd.read_csv('financial_clean.csv')
 
 #chargement des des données individuelles
-#individual = pd.read_csv('individual_data_sample.csv.gz', compression='gzip')
+
 individual= pd.read_csv('individual_data.csv')
 #==========================================================
 
 import pandas as pd
 import plotly.express as px
-import streamlit as st
+
 
 # Titre de l'application
 st.title("Tableau de bord des transactions")
@@ -114,6 +116,7 @@ if not filtered_data.empty:
                 "is_fraud":True,
                 "daily_fraud_amount$":True,
                 "merchant":True
+               
             },
             color_discrete_sequence=[color_points],
             title="Carte des transactions",
@@ -144,7 +147,7 @@ else:
 
 
 #==========================================================
-import streamlit as st
+
 ##streamlit 1.40.2
 
 import time
