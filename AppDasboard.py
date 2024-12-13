@@ -110,9 +110,10 @@ if not filtered_data.empty:
             hover_data={
                 "daily_amount$": True,
                 "date": True,
-                "state": True,
                 "category": True,
-                "daily_fraud_amount$":True
+                "is_fraud":True,
+                "daily_fraud_amount$":True,
+                "merchant":True
             },
             color_discrete_sequence=[color_points],
             title="Carte des transactions",
