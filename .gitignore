@@ -1,5 +1,5 @@
 credit_card_transactions.csv
-requirements.txt
+
 sujet.pdf
 env/
 individual_data.csv
@@ -7,11 +7,11 @@ statecity_data.csv
 iin_ranges.json
 # Ignorer les fichiers avec les extensions qui suivent
 *.csv 
-*.txt
+
 *.pdf
 *.json
-*.py
-!AppDasboard.py
+
+
 # Ignorer mon environnement virtuel
 env/
 
