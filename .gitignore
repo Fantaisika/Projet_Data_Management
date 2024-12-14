@@ -9,3 +9,5 @@
 !AppDasboard.py
 # Ignorer mon environnement virtuel
 env/
+.streamlit/
+__pycache__/
