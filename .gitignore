@@ -1,13 +1,6 @@
 # Ignorer les fichiers avec les extensions qui suivent
 *.csv 
-*.txt
 *.pdf
-*.json
-*.py
-*.png
-*.jpg
-!AppDasboard.py
 # Ignorer mon environnement virtuel
 env/
-.streamlit/
 __pycache__/
