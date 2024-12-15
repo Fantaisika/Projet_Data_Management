@@ -85,7 +85,7 @@ col2.markdown(f"""<div style="text-align: justify;">{text2}</div>""",
                 unsafe_allow_html=True
                 )
 
-col3.subheader("Senior President")
+col3.subheader("President")
 col3.image("images/robin.jpg")
 text3 = """Titulaire d'un PhD. en Finance Internationale & Expert
             en Risques pays et bancaires, M. Robin Wabo préside
@@ -101,9 +101,3 @@ text4 = """Statisticien Senior & Data Analyst, M. Atji Cheick
 col4.markdown(f"""<div style="text-align: justify;">{text4}</div>""",
                 unsafe_allow_html=True
                 )
-
-#Progress bar
-my_bar = st.progress(0)
-for p in range(10):
-    time.sleep(1)
-    my_bar.progress(p+1)

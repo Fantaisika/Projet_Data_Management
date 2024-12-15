@@ -1,17 +1,6 @@
 ############################################ LIBRARIES ############################################
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-import plotly.express as px
-
-############################################ WEB PAGE CONFIG ######################################
-st.set_page_config(
-    page_title="Payment Analysis",  # Titre de l'onglet
-    page_icon="📊",  # Icône de l'onglet
-    layout="wide",  # Options : 'centered' (par défaut) ou 'wide'
-    initial_sidebar_state="expanded",  # État initial de la barre latérale : 'expanded' ou 'collapsed'
-)
 
 ############################################ FONCTIONS ############################################
 # Fonction pour filtrer les données par plage de dates avec slider

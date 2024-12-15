@@ -37,7 +37,7 @@ info_col1, info_col2 = st.columns(2)
 # Colonne 1 : Saisie du numéro de carte
 with info_col1:
     st.subheader("Saisissez les informations")
-    cc_num = st.text_input("Numéro de carte bancaire", "")
+    cc_num = st.text_input("Numéro de carte bancaire", value = "2703186189652095")
     filtered_data = pd.DataFrame()  # Initialisation d'un DataFrame vide
 
     if cc_num:
@@ -128,18 +128,4 @@ if not filtered_data.empty:
 
 else:
     st.info("Les résultats s'afficheront ici une fois qu'un numéro de carte et une période seront saisis.")
-
-#==========================================================
-
-#Progress bar
-my_bar = st.progress(0)
-for p in range(10):
-    time.sleep(1)
-    my_bar.progress(p+1)
-
-# #Spinner
-with st.spinner('Waiting...'):
-    time.sleep(5)
-
-st.success('Finished')
 

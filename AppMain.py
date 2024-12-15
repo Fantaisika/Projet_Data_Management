@@ -36,7 +36,7 @@ st.set_page_config(
 # Structure des pages de l'application web
 pages = [
     st.Page("AboutUs.py", title="Home"),
-    st.Page("MetaDonnees.py", title="MetaDonnees"),
+    st.Page("MetaDonnees.py", title="MétaDonnées"),
     st.Page("StatsDescriptifs.py", title="Statistiques Descriptives"),
     st.Page("TableauBordIndividu.py", title="Suivi des KPIs Individus"),
     st.Page("GeoAnalysisCharts.py", title="GeoAnalyse"),
@@ -47,9 +47,3 @@ pages = [
 
 pg = st.navigation(pages)
 pg.run()
-
-#Progress bar
-my_bar = st.progress(0)
-for p in range(10):
-    time.sleep(1)
-    my_bar.progress(p+1)

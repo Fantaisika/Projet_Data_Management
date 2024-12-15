@@ -56,9 +56,3 @@ st.dataframe(data=metadonnees1, hide_index=True,
 st.subheader("Tableau de synthèse sur les nouvelles variables calculées:")
 st.dataframe(data=metadonnees2, hide_index=True,
             use_container_width = True)
-
-#Progress bar
-my_bar = st.progress(0)
-for p in range(10):
-    time.sleep(1)
-    my_bar.progress(p+1)

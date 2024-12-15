@@ -67,9 +67,3 @@ try:
 
 except Exception as e:
     st.markdown("*Entrer des valeurs dans les champs* 😊")
-
-#Progress bar
-my_bar = st.progress(0)
-for p in range(10):
-    time.sleep(1)
-    my_bar.progress(p+1)
