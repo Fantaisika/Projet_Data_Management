@@ -89,23 +89,15 @@ transamount = persondata_filtre['daily_amount$'].sum()
 fraudnum = persondata_filtre['daily_number_fraud'].sum()
 fraudamount = persondata_filtre['daily_fraud_amount$'].sum()
 
-col1,col2,col3 = st.columns(3)
-col1.markdown(f"""<h3 style="font-size:20px; color: green; text-align: center;"
-                  >Periode</h3>""",unsafe_allow_html=True)
-col1.markdown(f"""<h3 style="font-size:20px; color: green; text-align: center;"
-                  >{date_min} au {date_max}</h3>""",
+
+st.markdown(f"""<h3 style="font-size:25px; color: dark; text-align: center;"
+                  >Periode: {date_min} au {date_max}</h3>""",unsafe_allow_html=True)
+col1,col2= st.columns(2)
+col1.markdown(f"""<h3 style="font-size:20px; color: royalblue; text-align: center;"
+                  >Nombre de transactions{space*2}{transnumb:,.0f}</h3>""",
                   unsafe_allow_html=True)
-col2.markdown(f"""<h3 style="font-size:20px; color: green; text-align: center;"
-                  >Nombre de transactions</h3>""",
-                  unsafe_allow_html=True)
-col2.markdown(f"""<h3 style="font-size:20px; color: green; text-align: center;"
-                  >{space*6}{transnumb:,.0f}</h3>""",
-                  unsafe_allow_html=True)
-col3.markdown(f"""<h3 style="font-size:20px; color: green; text-align: center;"
-                  >Total des montants</h3>""",
-                  unsafe_allow_html=True)
-col3.markdown(f"""<h3 style="font-size:20px; color: green; text-align: center;"
-                  >{space*6}{transamount:,.2f} USD</h3>""",
+col2.markdown(f"""<h3 style="font-size:20px; color: royalblue; text-align: center;"
+                  >Total des montants{space*2}{transamount:,.2f} USD</h3>""",
                   unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
@@ -122,6 +114,14 @@ col2.markdown(f"""<h2 style="font-size:20px; text-align: center; color:royalblue
 col2.bar_chart(persondata_filtre[['date','daily_transactions']],
                 y="daily_transactions", x="date", x_label='Periode',
                 y_label='Volume des transactions')
+
+col1, col2 = st.columns(2)
+col1.markdown(f"""<h3 style="font-size:20px; color: red; text-align: center;"
+                  >Nombre de Fraudes{space*2}{fraudnum:,.0f}</h3>""",
+                  unsafe_allow_html=True)
+col2.markdown(f"""<h3 style="font-size:20px; color: red; text-align: center;"
+                  >Total des montants{space*2}{fraudamount:,.2f} USD</h3>""",
+                  unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 col1.markdown(f"""<h2 style="font-size:20px; text-align: center; color: red;"
