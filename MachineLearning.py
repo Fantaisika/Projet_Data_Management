@@ -9,7 +9,7 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import classification_report
 
 # Charger les données directement
-financial = pd.read_csv('data/financial_clean.csv')
+financial = pd.read_csv('financial_clean.csv')
 
 # Préparer les données pour clustering et régression
 def prepare_data(financial, features, target, n_clusters=3):
@@ -40,11 +40,21 @@ def visualize_clusters(financial):
     
     fig = px.scatter(
         financial, x='X', y='Y', color='cluster',
-        title="Répartition des clusters (PCA)",
-         labels={'X': 'Axe X (80% variance)', 'Y': 'Axe Y (20% variance)', 'cluster': 'Cluster'},
-        hover_data=['gender', 'group_age', 'category']
+        title="Répartition des Clusters (PCA)",
+        labels={'X': 'PC1 (Principal Component 1)', 'Y': 'PC2 (Principal Component 2)'},
+        color_discrete_sequence=px.colors.qualitative.Bold,  # Palette de couleurs
+        template="plotly_dark"  # Thème sombre
+    )
+    fig.update_traces(marker=dict(size=8, line=dict(width=1, color='DarkSlateGrey')))
+    fig.update_layout(
+        xaxis=dict(showgrid=True, zeroline=False),
+        yaxis=dict(showgrid=True, zeroline=False),
+        showlegend=False
     )
     return fig
+
+
+
 
 # Analyser  les proportions de genres, groupes d'âge et catégories
 def analyze_proportions(financial_data):
@@ -113,8 +123,10 @@ def train_and_visualize_logistic_regression(financial, features, target):
 
     return report_df, fig
 
+
 # Interface Streamlit
 st.title("Analyses et Recommandations")
+
 
 # Définir les colonnes explicatives et la cible
 features = ['group_age', 'gender', 'category']
@@ -153,6 +165,10 @@ with col6:
     st.subheader("Importance des Variables")
     # Affichage du graphique des coefficients
     st.plotly_chart(fig_coefficients, use_container_width=True)
+
+
+
+
 
 #####================================================
 
