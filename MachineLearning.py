@@ -9,7 +9,7 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import classification_report
 
 # Charger les données directement
-financial = pd.read_csv('data/financial_clean.csv')
+financial = pd.read_csv('financial_clean.csv')
 
 # Préparer les données pour clustering et régression
 def prepare_data(financial, features, target, n_clusters=3):
@@ -46,9 +46,7 @@ def visualize_clusters(financial):
     )
     return fig
 
-
-
-# Analyser les proportions de genres, groupes d'âge et catégories
+# Analyser  les proportions de genres, groupes d'âge et catégories
 def analyze_proportions(financial_data):
     
     # Proportions de genre
@@ -79,14 +77,13 @@ def analyze_proportions(financial_data):
     return fig_gender, fig_age, fig_category
 
 
-
 # Régression logistique et visualisation des coefficients
 from sklearn.preprocessing import OneHotEncoder
 
 def train_and_visualize_logistic_regression(financial, features, target):
-   
+    
     # Encoder les colonnes catégoriques
-    encoder = OneHotEncoder(sparse_output=False, drop='first')  # OneHotEncoder pour les variables catégoriques
+    encoder = OneHotEncoder(sparse_output=False, drop='first')
     X_encoded = encoder.fit_transform(financial[features])
     encoded_feature_names = encoder.get_feature_names_out(features)
 
@@ -98,11 +95,11 @@ def train_and_visualize_logistic_regression(financial, features, target):
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 
-    # Affichons  le rapport de classification
-    st.text("Rapport de Classification :")
-    st.text(classification_report(y_test, y_pred))
+    # Convertir le rapport de classification en DataFrame
+    report = classification_report(y_test, y_pred, output_dict=True)
+    report_df = pd.DataFrame(report).transpose()
 
-    # Visualisons  les coefficients
+    # Visualiser les coefficients
     coefficients = pd.DataFrame({
         'Feature': encoded_feature_names,
         'Coefficient': model.coef_[0]
@@ -113,21 +110,20 @@ def train_and_visualize_logistic_regression(financial, features, target):
         title="Importance des Variables (Coefficients)",
         labels={'Coefficient': 'Coefficient', 'Feature': 'Variable'}
     )
-    return fig
 
+    return report_df, fig
 
 # Interface Streamlit
-st.title("Analyse et Recommandations")
-
+st.title("Analyses et Recommandations")
 
 # Définir les colonnes explicatives et la cible
 features = ['group_age', 'gender', 'category']
 target = 'is_fraud'
 
-# Étape 1 : Préparer les données
+#  Préparations des données
 financial, kmeans = prepare_data(financial, features, target)
 
-# Ligne 1 : Clusters et Proportions des Genres
+# Visualisations : Clusters et Proportions des Genres
 col1, col2 = st.columns(2)
 with col1:
     st.plotly_chart(visualize_clusters(financial), use_container_width=True)
@@ -135,20 +131,28 @@ with col2:
     fig_gender, fig_age, fig_category = analyze_proportions(financial)
     st.plotly_chart(fig_gender, use_container_width=True)
 
-# Ligne 2 : Proportions des Groupes d'Âge et Catégories
+# Visualisations : Proportions des Groupes d'Âge et Catégories
 col3, col4 = st.columns(2)
 with col3:
     st.plotly_chart(fig_age, use_container_width=True)
 with col4:
     st.plotly_chart(fig_category, use_container_width=True)
 
-# Ligne 3 : Rapport de Classification et Importance des Variables
+# Visualisations : Rapport de Classification et Coefficients
 col5, col6 = st.columns(2)
+
+
+report_df, fig_coefficients = train_and_visualize_logistic_regression(financial, features, target)
+
 with col5:
     st.subheader("Rapport de Classification")
-    train_and_visualize_logistic_regression(financial, features, target)
+    # Affichage du rapport de classification sous forme de tableau
+    st.dataframe(report_df.style.format({"precision": "{:.2f}", "recall": "{:.2f}", "f1-score": "{:.2f}"}))
+
 with col6:
-    st.plotly_chart(train_and_visualize_logistic_regression(financial, features, target), use_container_width=True)
+    st.subheader("Importance des Variables")
+    # Affichage du graphique des coefficients
+    st.plotly_chart(fig_coefficients, use_container_width=True)
 
 #####================================================
 
@@ -157,14 +161,7 @@ import streamlit as st
 
 import time
 
-#Progress bar
-my_bar = st.progress(0)
-for p in range(10):
-    time.sleep(1)
-    my_bar.progress(p+1)
-
 # #Spinner
 with st.spinner('Waiting...'):
     time.sleep(5)
 
-st.success('Finished')
