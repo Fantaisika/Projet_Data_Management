@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-
+import streamlit as st
 # Fonction pour créer des tableaux statistiques croisés dynamiques
 def cross_stat(data:pd.DataFrame = None, catlist:list = None, var:'str'=None):
 

@@ -84,6 +84,7 @@ text2 = """Fort d'une expérience de 7 ans chez Barclays, en qualité
 col2.markdown(f"""<div style="text-align: justify;">{text2}</div>""",
                 unsafe_allow_html=True
                 )
+
 col3.subheader("Senior President")
 col3.image("images/robin.jpg")
 text3 = """Titulaire d'un PhD. en Finance Internationale & Expert
@@ -92,6 +93,7 @@ text3 = """Titulaire d'un PhD. en Finance Internationale & Expert
 col3.markdown(f"""<div style="text-align: justify;">{text3}</div>""",
                 unsafe_allow_html=True
                 )
+
 col4.subheader("Director")
 col4.image("images/atji.jpg") 
 text4 = """Statisticien Senior & Data Analyst, M. Atji Cheick

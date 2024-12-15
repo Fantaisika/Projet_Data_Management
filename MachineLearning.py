@@ -9,7 +9,7 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import classification_report
 
 # Charger les données directement
-financial = pd.read_csv('financial_clean.csv')
+financial = pd.read_csv('data/financial_clean.csv')
 
 # Préparer les données pour clustering et régression
 def prepare_data(financial, features, target, n_clusters=3):
